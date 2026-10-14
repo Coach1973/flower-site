@@ -1042,19 +1042,19 @@ body.lb-lock{overflow:hidden}
           </ul>
         </div>
 
-        <!-- 洽詢表單（靜態頁，尚未串接） -->
-        <form class="form reveal" id="inquiry" style="--d:.1s" novalidate>
+        <!-- 洽詢表單：/static/works-form.js 送到活動報名即時通知（2026-10-14） -->
+        <form class="form reveal" id="inquiry" style="--d:.1s" novalidate data-works-form="flower-site" data-success="謝謝您！洽詢已送出，我們會盡快與您聯絡。">
           <div class="field">
             <label for="f-name">姓名</label>
             <input id="f-name" name="name" type="text" autocomplete="name" placeholder="您的稱呼">
           </div>
           <div class="field">
             <label for="f-contact">聯絡方式</label>
-            <input id="f-contact" name="contact" type="text" autocomplete="tel" placeholder="電話、LINE ID 或 Email">
+            <input id="f-contact" name="phone" type="text" autocomplete="tel" placeholder="電話或 Email（LINE ID 可寫在訊息裡）">
           </div>
           <div class="field">
             <label for="f-type">需求類型</label>
-            <select id="f-type" name="type">
+            <select id="f-type" name="item">
               <option>永生花禮盒與花束</option>
               <option>鈔票花禮・驚喜禮盒</option>
               <option>韓式氣球與派對佈置</option>
@@ -1069,7 +1069,7 @@ body.lb-lock{overflow:hidden}
             <textarea id="f-msg" name="message" rows="4" placeholder="想送的對象、日期、預算或色系偏好"></textarea>
           </div>
           <button class="btn btn-ink" type="submit">送出</button>
-          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+          <p class="form-note" id="formNote" data-works-msg role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -1209,14 +1209,9 @@ body.lb-lock{overflow:hidden}
     if (e.key === 'ArrowRight') render(current + 1);
   });
 
-  /* ---------- 洽詢表單：靜態頁，不假裝送出成功 ---------- */
-  var form = document.getElementById('inquiry');
-  var note = document.getElementById('formNote');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    note.textContent = '表單尚未串接，請直接加官方 LINE 或私訊社群，一律訊息回覆。';
-  });
+  /* ---------- 洽詢表單：由 /static/works-form.js 送出（2026-10-14 串接） ---------- */
 })();
 </script>
+<script src="/static/works-form.js" defer></script>
 </body>
 </html>
